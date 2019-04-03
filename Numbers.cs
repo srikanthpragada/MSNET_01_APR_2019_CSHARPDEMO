@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CsharpDemo
 {
-    class Program
+    class Numbers
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Hello C#");
+
+            for (int i = 1; i <= 10; i++)
+                Console.WriteLine(i);
         }
     }
 }

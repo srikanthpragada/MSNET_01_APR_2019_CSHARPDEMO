@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CsharpDemo.LeapYear</StartupObject>
+    <StartupObject>CsharpDemo.FunsDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunsDemo.cs" />
     <Compile Include="LeapYear.cs" />
     <Compile Include="Numbers.cs" />
     <Compile Include="Program.cs" />

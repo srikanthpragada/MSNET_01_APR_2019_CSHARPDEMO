@@ -49,6 +49,7 @@
     <Compile Include="Factors.cs" />
     <Compile Include="FunsDemo.cs" />
     <Compile Include="LeapYear.cs" />
+    <Compile Include="MyTime.cs" />
     <Compile Include="Numbers.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />

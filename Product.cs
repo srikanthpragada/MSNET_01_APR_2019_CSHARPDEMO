@@ -12,17 +12,46 @@ namespace CsharpDemo
         private int id;
         private string name;
         private double price;
+
         // Constructor 
-        public Product(int prodid, string prodname, double prodprice=0)
+        public Product(int id, string name, double price = 0)
         {
-            id = prodid;
-            name = prodname;
-            price = prodprice; 
+            this.id = id;
+            this.name = name;
+            this.price = price;
         }
+
+        public Product(string name)
+        {
+            this.name = name;
+        }
+
         // Method
         public void Print()
         {
-            Console.WriteLine($"{id} - {name} - {price}");
+            Console.WriteLine($"{this.id} - {this.name} - {this.price}");
+        }
+
+        // Property for name - read/write
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                if (value.Length > 0)
+                    this.name = value;
+            }
+        }
+        // Readonly property
+        public double NetPrice
+        {
+            get
+            {
+                return this.price * 1.08;
+            }
         }
     }
     class TestProduct
@@ -31,12 +60,15 @@ namespace CsharpDemo
         {
             Product p1;  // object reference
 
-            p1 = new Product(1,"Dell Laptop");  // create object 
-            // p1.id = 101;
+            p1 = new Product(1, "Dell Laptop");  // create object 
             p1.Print();
 
-            Product p2 = new Product(2, "Bose Headphones", 20000);
-            p2.Print(); 
+            Console.WriteLine(p1.Name);
+            p1.Name = "";
+
+            Console.WriteLine(p1.NetPrice);
+
+
 
         }
     }

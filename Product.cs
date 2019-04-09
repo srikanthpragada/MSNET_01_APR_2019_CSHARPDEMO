@@ -12,6 +12,20 @@ namespace CsharpDemo
         private int id;
         private string name;
         private double price;
+        // Class variables
+        private static int tax = 8;
+
+        public static int Tax
+        {
+            get
+            {
+                return Product.tax;
+            }
+            set
+            {
+                Product.tax = value; 
+            }
+        }
 
         // Constructor 
         public Product(int id, string name, double price = 0)
@@ -50,7 +64,7 @@ namespace CsharpDemo
         {
             get
             {
-                return this.price * 1.08;
+                return this.price * (this.price * tax / 100) ;
             }
         }
     }

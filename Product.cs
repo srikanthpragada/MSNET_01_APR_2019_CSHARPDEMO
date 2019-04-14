@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsharpDemo
 {
-    class Product
+    class Product : IComparable<Product>
     {
         // Instance variables 
         private int id;
@@ -46,6 +46,11 @@ namespace CsharpDemo
             Console.WriteLine($"{this.id} - {this.name} - {this.price}");
         }
 
+        public int CompareTo(Product other)
+        {
+            return  (int) (this.price - other.price); 
+        }
+
         // Property for name - read/write
         public string Name
         {
@@ -64,7 +69,7 @@ namespace CsharpDemo
         {
             get
             {
-                return this.price * (this.price * tax / 100) ;
+                return this.price + (this.price * tax / 100) ;
             }
         }
     }
@@ -82,8 +87,17 @@ namespace CsharpDemo
 
             Console.WriteLine(p1.NetPrice);
 
+            Product[] products = {
+                new Product(1,"Product1",10000),
+                new Product(2,"Product2",4000),
+                new Product(3,"Product3",15000),
+                new Product(4,"Product4",1000),
+            };
 
+            Array.Sort(products);
 
+            foreach (Product p in products)
+                Console.WriteLine($"{p.Name} - {p.NetPrice}");
         }
     }
 }

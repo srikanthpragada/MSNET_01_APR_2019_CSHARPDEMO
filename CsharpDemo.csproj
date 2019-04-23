@@ -46,14 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnonymousDemo.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DelegateDemo.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="DisplaySourceCode.cs" />
+    <Compile Include="DynamicDemo.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="FunsDemo.cs" />
     <Compile Include="LeapYear.cs" />
+    <Compile Include="ListDemo.cs" />
     <Compile Include="MyStack.cs" />
     <Compile Include="MyTime.cs" />
     <Compile Include="Numbers.cs" />

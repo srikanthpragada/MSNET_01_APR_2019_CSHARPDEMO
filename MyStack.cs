@@ -49,7 +49,11 @@ namespace CsharpDemo
             ss.Push("Abc");
             ss.Push("Xyz");
             Console.WriteLine(ss.Pop());
-           
+
+            string []  names =  { "Abc", "Xzy" };
+
+            Print(names);
+          
         }
     }
 }

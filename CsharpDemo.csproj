@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CsharpDemo.MyStack</StartupObject>
+    <StartupObject>CsharpDemo.FormatDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,6 +55,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Factors.cs" />
+    <Compile Include="FormatDemo.cs" />
     <Compile Include="FunsDemo.cs" />
     <Compile Include="LeapYear.cs" />
     <Compile Include="ListDemo.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="SumOfNumbers.cs" />
     <Compile Include="TestDateTime.cs" />
     <Compile Include="TestDoctor.cs" />
+    <Compile Include="TupleDemo.cs" />
+    <Compile Include="UniqueChars.cs" />
     <Compile Include="WriteValidMobileNumbers.cs" />
   </ItemGroup>
   <ItemGroup>

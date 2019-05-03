@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CsharpDemo.FormatDemo</StartupObject>
+    <StartupObject>CsharpDemo.Linq.QueryExpressionsDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,6 +58,9 @@
     <Compile Include="FormatDemo.cs" />
     <Compile Include="FunsDemo.cs" />
     <Compile Include="LeapYear.cs" />
+    <Compile Include="Linq\Book.cs" />
+    <Compile Include="Linq\QueryExpressionsDemo.cs" />
+    <Compile Include="Linq\QueryOperatorsDemo.cs" />
     <Compile Include="ListDemo.cs" />
     <Compile Include="MyStack.cs" />
     <Compile Include="MyTime.cs" />

@@ -27,36 +27,23 @@ namespace CsharpDemo.Linq
                 Console.WriteLine($"{b.Title} - {b.NetPrice}");
 
 
-            //var top2books = books.OrderByDescending(b => b.Price)
-            //                     .Skip(2)
-            //                     .Take(2);
-            //Console.WriteLine("Top 2 books by price");
-            //foreach (Book b in top2books)
-            //    Console.WriteLine($"{b.Title} - {b.Price}");
+            var avgprice = books.Average(b => b.Price);
 
+            Console.WriteLine("Books costlier than avg price");
+            var costlybooks = from b in books
+                              where b.Price > avgprice
+                              select b;
 
-            //var avgprice = books.Average(b => b.Price);
-
-            //Console.WriteLine("Books costlier than avg price");
-            //var costlybooks = books.Where(b => b.Price > avgprice);
-
-            //foreach (Book b in costlybooks)
-            //    Console.WriteLine($"{b.Title} - {b.Price}");
+            foreach (Book b in costlybooks)
+                Console.WriteLine($"{b.Title} - {b.Price}");
 
             // Get book by Walther
 
-            //var book = books.Where(b => b.Author == "Walther")
-            //                .SingleOrDefault();
-            //Console.WriteLine(book);
+            var book = (from b in books
+                       where b.Author == "Walther"
+                       select b).SingleOrDefault();
 
-            //var firstbook = books.Where(b => b.Author == "Walther")
-            //                     .OrderByDescending(b => b.Price)
-            //                     .FirstOrDefault();
-
-            //Console.WriteLine(book);
-
-
-
+            Console.WriteLine(book);
         }
     }
 }

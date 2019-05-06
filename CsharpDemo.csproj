@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CsharpDemo.EF.ListCategories</StartupObject>
+    <StartupObject>CsharpDemo.EF.TransDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -62,6 +62,8 @@
     <Compile Include="EF\Category.cs" />
     <Compile Include="EF\InventoryContext.cs" />
     <Compile Include="EF\ListCategories.cs" />
+    <Compile Include="EF\ManipulateCategory.cs" />
+    <Compile Include="EF\TransDemo.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Factors.cs" />

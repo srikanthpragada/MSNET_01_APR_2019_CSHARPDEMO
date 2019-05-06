@@ -11,10 +11,28 @@ namespace CsharpDemo.EF
         static void Main(string[] args)
         {
             var ctx = new InventoryContext();
-            ctx.Database.Log = Console.WriteLine; 
+            ctx.Database.Log = Console.WriteLine;
 
-            foreach(Category c in ctx.Categories)
+            // L2E  - Linq To Entities 
+            var cats = from c in ctx.Categories
+                       where c.Code.StartsWith("P")
+                       select c;
+
+
+            var cats2 = from c in ctx.Categories
+                        orderby c.Code
+                        select new
+                        {
+                            Code = c.Code.Substring(0, 1),
+                            Description = c.Description.ToUpper()
+                        };
+
+            foreach (var c in cats2)
                 Console.WriteLine($"{c.Code} - {c.Description}");
+
+            var phone = (from c in ctx.Categories
+                         where c.Description.Contains("phones")
+                         select c).FirstOrDefault();
         }
     }
 }

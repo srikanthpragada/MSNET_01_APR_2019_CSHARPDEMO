@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CsharpDemo.EF.TransDemo</StartupObject>
+    <StartupObject>CsharpDemo.EF.ListProducts</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -45,6 +45,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,10 +61,40 @@
     <Compile Include="DelegateExample.cs" />
     <Compile Include="DisplaySourceCode.cs" />
     <Compile Include="DynamicDemo.cs" />
+    <Compile Include="EF\Catalog.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Catalog.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Catalog.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Catalog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Catalog.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Catalog.edmx</DependentUpon>
+    </Compile>
     <Compile Include="EF\Category.cs" />
+    <Compile Include="EF\Course.cs" />
     <Compile Include="EF\InventoryContext.cs" />
     <Compile Include="EF\ListCategories.cs" />
+    <Compile Include="EF\ListProducts.cs" />
+    <Compile Include="EF\ListSales.cs" />
     <Compile Include="EF\ManipulateCategory.cs" />
+    <Compile Include="EF\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\product.cs">
+      <DependentUpon>Catalog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sale.cs">
+      <DependentUpon>Catalog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Student.cs" />
     <Compile Include="EF\TransDemo.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -89,7 +121,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF\Catalog.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Catalog.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\Catalog.edmx.diagram">
+      <DependentUpon>Catalog.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="EF\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\Catalog.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Catalog.edmx</DependentUpon>
+      <LastGenOutput>Catalog.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\Catalog.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Catalog.edmx</DependentUpon>
+      <LastGenOutput>Catalog.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

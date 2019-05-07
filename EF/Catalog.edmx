@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CatalogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="prodid" />
+          </Key>
+          <Property Name="prodid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="money" />
+          <Property Name="qoh" Type="int" />
+          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="catcode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sales">
+          <Key>
+            <PropertyRef Name="invno" />
+          </Key>
+          <Property Name="invno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodid" Type="int" />
+          <Property Name="transdate" Type="datetime" />
+          <Property Name="qty" Type="int" />
+          <Property Name="amount" Type="money" />
+        </EntityType>
+        <Association Name="sales_prodid_fk">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="sales" Type="Self.sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="prodid" />
+            </Principal>
+            <Dependent Role="sales">
+              <PropertyRef Name="prodid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CatalogModelStoreContainer">
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="sales_prodid_fk" Association="Self.sales_prodid_fk">
+            <End Role="products" EntitySet="products" />
+            <End Role="sales" EntitySet="sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CatalogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="prodid" />
+          </Key>
+          <Property Name="prodid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="qoh" Type="Int32" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="catcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sales" Relationship="Self.sales_prodid_fk" FromRole="products" ToRole="sales" />
+        </EntityType>
+        <EntityType Name="sale">
+          <Key>
+            <PropertyRef Name="invno" />
+          </Key>
+          <Property Name="invno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transdate" Type="DateTime" Precision="3" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="product" Relationship="Self.sales_prodid_fk" FromRole="sales" ToRole="products" />
+        </EntityType>
+        <Association Name="sales_prodid_fk">
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
+          <End Role="sales" Type="Self.sale" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CatalogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="sales" EntityType="Self.sale" />
+          <AssociationSet Name="sales_prodid_fk" Association="Self.sales_prodid_fk">
+            <End Role="products" EntitySet="products" />
+            <End Role="sales" EntitySet="sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CatalogModelStoreContainer" CdmEntityContainer="CatalogEntities">
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="CatalogModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="prodid" ColumnName="prodid" />
+                <ScalarProperty Name="prodname" ColumnName="prodname" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qoh" ColumnName="qoh" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="catcode" ColumnName="catcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales">
+            <EntityTypeMapping TypeName="CatalogModel.sale">
+              <MappingFragment StoreEntitySet="sales">
+                <ScalarProperty Name="invno" ColumnName="invno" />
+                <ScalarProperty Name="transdate" ColumnName="transdate" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="sales_prodid_fk" TypeName="CatalogModel.sales_prodid_fk" StoreEntitySet="sales">
+            <EndProperty Name="products">
+              <ScalarProperty Name="prodid" ColumnName="prodid" />
+            </EndProperty>
+            <EndProperty Name="sales">
+              <ScalarProperty Name="invno" ColumnName="invno" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="prodid" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
